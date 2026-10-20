@@ -1,0 +1,930 @@
+# ideal-dollop
+A little surprise waiting to unfold 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090e22">
+<title>A Little Surprise for Shubham 🤍</title>
+
+<style>
+:root {
+  --bg: #090e22;
+  --panel: #151d39;
+  --gold: #f3d18a;
+  --cream: #fff8ed;
+  --pink: #f4bdcf;
+  --muted: #c4cbe0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--cream);
+  background:
+    radial-gradient(ellipse at top, #28365f 0%, #101832 42%, #090e22 85%);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .15; transform: scale(.7); }
+  to { opacity: .9; transform: scale(1.4); }
+}
+
+main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  width: min(900px, 92%);
+  margin: auto;
+  padding: 65px 0;
+}
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: .76rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  line-height: 1.15;
+  color: var(--gold);
+  margin: 18px 0;
+  text-shadow: 0 0 28px #e6bd6840;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  line-height: 1.3;
+  text-align: center;
+  color: var(--gold);
+}
+
+h3 {
+  color: var(--pink);
+}
+
+.subtitle {
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.date-box {
+  width: min(440px, 100%);
+  border: 1px solid #f3d18a80;
+  border-radius: 18px;
+  background: #101831a8;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.date {
+  color: var(--gold);
+  letter-spacing: 1px;
+  font-size: .95rem;
+}
+
+.age {
+  font-size: clamp(3.5rem, 12vw, 5rem);
+  line-height: 1.3;
+  font-weight: bold;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 12px 23px;
+  margin: 8px 4px;
+  background: var(--gold);
+  color: #15172a;
+  font-weight: bold;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.secondary-btn {
+  color: var(--gold);
+  background: transparent;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px #0004;
+}
+
+.panel {
+  padding: clamp(22px, 5vw, 42px);
+  background: linear-gradient(145deg, #182241, #10162d);
+  border: 1px solid #f3d18a45;
+  border-radius: 22px;
+  box-shadow: 0 15px 45px #0003;
+}
+
+.center {
+  text-align: center;
+}
+
+.small {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.reveal {
+  animation: reveal .7s ease both;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.divider {
+  height: 2px;
+  width: 90px;
+  margin: 26px auto;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+input {
+  display: inline-block;
+  width: min(350px, 100%);
+  padding: 13px 16px;
+  border: 1px solid #f3d18a80;
+  border-radius: 12px;
+  background: #090e22;
+  color: white;
+  text-align: center;
+  margin: 12px 0;
+}
+
+.feedback {
+  min-height: 30px;
+  color: var(--pink);
+}
+
+/* ANIMATED ENVELOPE */
+
+.envelope-area {
+  width: 100%;
+  max-width: 360px;
+  margin: 24px auto 10px;
+  perspective: 900px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 205px;
+  border: 0;
+  background: transparent;
+  display: block;
+  padding: 0;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 30px 0 0;
+  background: #8e668f;
+  border-radius: 5px;
+}
+
+.envelope-paper {
+  position: absolute;
+  z-index: 2;
+  left: 8%;
+  width: 84%;
+  height: 150px;
+  top: 40px;
+  background: #fff8ed;
+  color: #5c4265;
+  border-radius: 5px;
+  padding: 16px 10px;
+  line-height: 1.6;
+  transition: transform 1s ease, top 1s ease;
+  box-shadow: 0 0 12px #0002;
+}
+
+.envelope-paper strong {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 75px 0 0;
+  z-index: 4;
+  background: #bd8eb6;
+  clip-path: polygon(0 0, 50% 65%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 0 5px 5px;
+}
+
+.envelope-flap {
+  position: absolute;
+  z-index: 5;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: #e4b6d1;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform .8s ease;
+}
+
+.seal {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 108px;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  color: #5b3157;
+  font-size: 1.3rem;
+  transition: opacity .3s;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .envelope-paper {
+  top: -18px;
+  transform: translateY(-15px);
+}
+
+.envelope.open .seal {
+  opacity: 0;
+}
+
+.envelope-hint {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+/* ARCHIVE */
+
+.archive-number {
+  display: inline-block;
+  padding: 12px 16px;
+  border: 1px dashed var(--gold);
+  border-radius: 12px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.card {
+  padding: 22px;
+  background: #0b1229;
+  border: 1px solid #f3d18a35;
+  border-radius: 16px;
+}
+
+.card-icon {
+  font-size: 2rem;
+}
+
+/* CAKE */
+
+.cake-stage {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.cake-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  border: none;
+  background: transparent;
+}
+
+.cake {
+  width: 220px;
+  max-width: 70vw;
+  margin: auto;
+  transition: transform .3s;
+}
+
+.cake-button:hover .cake {
+  transform: scale(1.04);
+}
+
+.candle {
+  position: relative;
+  margin: auto;
+  height: 44px;
+  width: 10px;
+  background: repeating-linear-gradient(
+    45deg, #fff4d4 0 5px, #e58ca9 5px 10px
+  );
+  border-radius: 3px;
+}
+
+.flame {
+  position: absolute;
+  width: 16px;
+  height: 23px;
+  left: -3px;
+  top: -25px;
+  background: radial-gradient(
+    ellipse at bottom, #fff8ad 5%, #ffb43b 55%, #ff7043 90%
+  );
+  border-radius: 50% 50% 45% 45%;
+  transform-origin: bottom;
+  animation: flicker .7s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform: rotate(-5deg) scale(.95); }
+  to { transform: rotate(5deg) scale(1.08); }
+}
+
+.flame.out {
+  display: none;
+}
+
+.frosting {
+  height: 25px;
+  background: #f7c5d6;
+  border-radius: 12px 12px 5px 5px;
+}
+
+.cake-layer {
+  height: 48px;
+  margin: auto;
+  border: 2px solid var(--gold);
+  background: linear-gradient(90deg, #a96572, #d995a4, #a96572);
+  border-radius: 5px 5px 12px 12px;
+}
+
+.cake-layer.top {
+  width: 78%;
+}
+
+.cake-layer.bottom {
+  width: 100%;
+}
+
+.plate {
+  height: 12px;
+  width: 110%;
+  margin-left: -5%;
+  border-radius: 50%;
+  background: #dce1ee;
+  box-shadow: 0 5px 0 #8b93b1;
+}
+
+/* LETTER */
+
+.letter {
+  padding: clamp(20px, 5vw, 42px);
+  background: #fff8ed;
+  color: #333047;
+  border-radius: 8px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.letter h2 {
+  color: #6e4d75;
+  text-align: left;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+.letter p {
+  margin: 0 0 18px;
+}
+
+.signature {
+  color: #785578;
+  font-style: italic;
+}
+
+.final-quote {
+  color: var(--gold);
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 20px 50px;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+[id] {
+  scroll-margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 45px 0;
+  }
+
+  .envelope {
+    height: 185px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars" aria-hidden="true"></div>
+
+<main>
+
+<!-- 1. BIRTHDAY WELCOME -->
+<section class="hero" id="home">
+  <p class="eyebrow">A little surprise made just for you</p>
+
+  <h1>Happy Birthday,<br>Shubham! 🤍</h1>
+
+  <p class="subtitle">
+    Some memories are unexpected.<br>
+    Some people become unexpectedly important.<br>
+    And some surprises are worth opening slowly.
+  </p>
+
+  <div class="date-box">
+    <div class="date">23 OCTOBER 2010</div>
+    <div class="age">16</div>
+    <div class="date">23 OCTOBER 2026</div>
+    <p class="small">Sixteen years of life. A new chapter begins.</p>
+  </div>
+
+  <p>There is something waiting for you…</p>
+
+  <div class="envelope-area">
+    <button class="envelope" id="envelope"
+      onclick="openEnvelope()"
+      aria-label="Open your birthday envelope">
+
+      <div class="envelope-back"></div>
+
+      <div class="envelope-paper">
+        <strong>A little something for you 💌</strong>
+        Made with care, especially for your sixteenth birthday.
+      </div>
+
+      <div class="envelope-flap"></div>
+      <div class="envelope-front"></div>
+      <div class="seal">♥</div>
+    </button>
+
+    <p class="envelope-hint" id="envelopeHint">
+      Tap the envelope to open it.
+    </p>
+  </div>
+
+  <button id="continueButton" class="primary-btn hidden"
+    onclick="showEntrance()">
+    Continue to Your Surprise ✨
+  </button>
+</section>
+
+
+<!-- 2. SECRET CODE AND RIDDLE -->
+<section id="entrance" class="hidden">
+  <div class="panel center">
+    <p class="eyebrow">Level 01 · The Secret Entrance</p>
+    <h2>Every surprise has a key. 🔐</h2>
+
+    <p>
+      Before you enter, solve this tiny birthday riddle.
+      The answer will help you discover the secret code.
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="eyebrow">A Birthday Riddle</p>
+
+    <h3>Sixteen candles, one special day…</h3>
+
+    <p>
+      My name begins this birthday surprise.<br>
+      My age is the number you see.<br>
+      Put them together, without a space,<br>
+      and the secret entrance will open for thee.
+    </p>
+
+    <p class="small">Hint: Your first name + your new age.</p>
+
+    <form onsubmit="unlockArchive(event)">
+      <label for="secretCode">Enter the secret code</label><br>
+
+      <input id="secretCode"
+        type="password"
+        placeholder="Your secret code"
+        autocomplete="off"
+        required>
+
+      <br>
+
+      <button type="submit" class="primary-btn">
+        Unlock the Surprise 🔑
+      </button>
+    </form>
+
+    <p id="codeFeedback" class="feedback" aria-live="polite"></p>
+  </div>
+</section>
+
+
+<!-- 3. UNLOCKED WEBSITE -->
+<div id="surprise" class="hidden">
+
+  <!-- ARCHIVE -->
+  <section id="archive">
+    <div class="panel center">
+      <p class="eyebrow">Access Granted</p>
+
+      <h2>Welcome to Your Little Corner of the Universe. 🌙</h2>
+
+      <p>
+        This isn't just a birthday page.
+        It's a small memory made for someone who became
+        an unexpected part of another person's Class 10 story.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="small">PERSONAL MEMORY ARCHIVE</p>
+
+      <div class="archive-number">SH-16-23102010</div>
+
+      <p class="small">
+        File status: Open<br>
+        Occasion: Sixteenth Birthday<br>
+        Year: 2026
+      </p>
+
+      <p>
+        Some things are worth keeping, even when life
+        takes us in different directions.
+      </p>
+
+      <button class="secondary-btn" onclick="goTo('cakeSection')">
+        Birthday Cake 🎂
+      </button>
+
+      <button class="secondary-btn" onclick="goTo('wordsSection')">
+        A Few Things to Remember 🤍
+      </button>
+
+      <button class="secondary-btn" onclick="goTo('letterSection')">
+        Open Your Letter 💌
+      </button>
+    </div>
+  </section>
+
+
+  <!-- BIRTHDAY CAKE -->
+  <section id="cakeSection">
+    <div class="panel center">
+      <p class="eyebrow">Archive File 01</p>
+      <h2>A Cake Just for You 🎂</h2>
+
+      <p>
+        Sixteen years, countless possibilities,
+        and a whole new chapter ahead.
+      </p>
+
+      <div class="cake-stage">
+        <button class="cake-button"
+          onclick="toggleCandle()"
+          aria-label="Tap the cake to make a birthday wish">
+
+          <div class="cake">
+            <div class="candle">
+              <div class="flame" id="flame"></div>
+            </div>
+
+            <div class="frosting"></div>
+            <div class="cake-layer top"></div>
+            <div class="cake-layer bottom"></div>
+            <div class="plate"></div>
+          </div>
+        </button>
+
+        <p id="cakeMessage" aria-live="polite">
+          Tap the cake to make a birthday wish. ✨
+        </p>
+      </div>
+
+      <p class="small">
+        A wish doesn't need to be loud to be meaningful.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ENCOURAGING MESSAGES -->
+  <section id="wordsSection">
+    <p class="eyebrow center">Archive File 02</p>
+    <h2>A Few Things Worth Remembering 🤍</h2>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card-icon">🌱</div>
+        <h3>Keep Growing</h3>
+        <p>
+          You don't need to have everything figured out.
+          Every day is another chance to learn and improve.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🫶</div>
+        <h3>Be Kind to Yourself</h3>
+        <p>
+          Give yourself the same patience and kindness
+          that you give to the people around you.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🌟</div>
+        <h3>Trust Your Journey</h3>
+        <p>
+          One difficult day cannot define your entire story.
+          Keep trying and give yourself a fair chance.
+        </p>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- COMPLETE BIRTHDAY LETTER -->
+  <section id="letterSection">
+    <p class="eyebrow center">Archive File 03 · A Personal Message</p>
+    <h2>A Letter for You 💌</h2>
+
+    <div class="letter">
+
+      <h2>💌 Happy 16th Birthday, Shubham! 🎂🤍</h2>
+
+      <p>
+        Hey, birthday boy! 😂✨ So, you're sixteen now!
+        Does that mean you'll stop overthinking and finally
+        realise how capable you are? Probably not—but I'm still
+        going to remind you! 🤭
+      </p>
+
+      <p>
+        I never expected that meeting you would become one of
+        the things I'd be grateful for about my Class 10 journey,
+        but here we are. I'm genuinely glad our paths crossed.
+        Thank you for your kind heart, the respect you show me,
+        and the little things you do that mean more than you realise.
+        You make me feel valued and cared for, and that's something
+        I truly appreciate. 🫶🏻
+      </p>
+
+      <p>
+        Since this is our last year of school, I hope we make more
+        memories worth smiling about. We don't know where life will
+        take us after Class 10 or how things might change, but I'm
+        grateful you're part of this chapter of my life. I hope that,
+        years from now, we'll be able to look back on these days and
+        smile at the memories we've made. 🌷
+      </p>
+
+      <p>
+        And Shubham, please believe in yourself a little more.
+        One bad day doesn't define you, and one mistake doesn't
+        erase your abilities. Don't let your overthinking convince
+        you that you're not good enough. Be patient with yourself,
+        keep working towards your dreams, and remember to give
+        yourself the same kindness you give others. You don't have
+        to have everything figured out at sixteen. You're still
+        growing, learning, and discovering what you're capable of. ❤️
+      </p>
+
+      <p>
+        I hope this new year of your life brings you happiness,
+        new opportunities, unforgettable memories, and plenty of
+        reasons to be proud of yourself. I hope you find the courage
+        to face difficult days, the confidence to trust your abilities,
+        and the peace to appreciate how far you've come. Keep that kind
+        heart, keep that smile, and please don't let overthinking steal
+        too many of your happy moments! 😂🤍
+      </p>
+
+      <p>
+        And if you ever read this letter again on a day when things
+        don't go your way, remember this:
+        <strong>you don't have to be perfect to be someone worth
+        believing in.</strong> Keep trying, keep growing, and never
+        underestimate what you can achieve when you give yourself a
+        fair chance.
+      </p>
+
+      <p>
+        Happy Birthday to someone who became a beautiful, unexpected
+        part of my school story. I'm glad I met you, and I genuinely
+        wish to see you grow into someone who believes in himself as
+        much as the people who believe in him. ✨
+      </p>
+
+      <p>
+        Here's to sixteen, the memories we've made, the moments still
+        waiting to happen, and all the wonderful chapters life has
+        ahead for you.
+      </p>
+
+      <p><strong>Happy Birthday once again, Shubham! 🎂💌</strong></p>
+
+      <p>
+        Take care of yourself, be kinder to yourself, and never forget
+        that your story is only just beginning. 🤍🌙
+      </p>
+
+      <p class="signature">
+        With warm wishes, and a little reminder to believe in yourself. 🤍
+      </p>
+    </div>
+  </section>
+
+
+  <!-- FINAL MESSAGE -->
+  <section id="ending">
+    <div class="panel center">
+      <p class="eyebrow">End of Archive · Beginning of Everything Else</p>
+
+      <h2>One Last Thing…</h2>
+
+      <p class="final-quote">
+        “You don't have to be perfect to be someone worth believing in.”
+      </p>
+
+      <div class="divider"></div>
+
+      <p>
+        May sixteen bring you more confidence, more happiness,
+        meaningful memories, and reasons to be proud of yourself.
+      </p>
+
+      <p class="date">
+        Happy 16th Birthday, Shubham. 🤍
+      </p>
+
+      <p class="small">
+        Some people become a beautiful part of our story
+        without us ever expecting it.
+      </p>
+
+      <button class="secondary-btn" onclick="goTo('home')">
+        Return to the Beginning ↟
+      </button>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <p>Made with care, especially for your sixteenth birthday. 🤍</p>
+  <p>SH-16 · 23.10.2026</p>
+</footer>
+
+
+<script>
+/* Change this value to change the secret code. */
+const SECRET_CODE = "SHUBHAM16";
+
+/* Decorative stars */
+const starContainer = document.getElementById("stars");
+
+for (let i = 0; i < 75; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  star.style.animationDuration = (2 + Math.random() * 4) + "s";
+  starContainer.appendChild(star);
+}
+
+/* Open the animated envelope */
+let envelopeOpened = false;
+
+function openEnvelope() {
+  const envelope = document.getElementById("envelope");
+
+  if (envelopeOpened) return;
+
+  envelopeOpened = true;
+  envelope.classList.add("open");
+
+  document.getElementById("envelopeHint").textContent =
+    "A little surprise, made especially for you. 🤍";
+
+  setTimeout(() => {
+    document.getElementById("continueButton").classList.remove("hidden");
+    document.getElementById("continueButton").classList.add("reveal");
+  }, 900);
+}
+
+/* Show the secret entrance */
+function showEntrance() {
+  const entrance = document.getElementById("entrance");
+
+  entrance.classList.remove("hidden");
+  entrance.classList.add("reveal");
+
+  goTo("entrance");
+
+  setTimeout(() => {
+    document.getElementById("secretCode").focus();
+  }, 500);
+}
+
+/* Check the secret code */
+function unlockArchive(event) {
+  event.prevent
